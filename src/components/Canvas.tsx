@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Row from './Row'
 
-const Canvas = ({ width }: { width: number }) => {
+const Canvas = ({ width = 0 }: { width: number }) => {
   const rows: JSX.Element[] = []
 
   for (let i = 0; i < width; i++) {
