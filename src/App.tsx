@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+import Canvas from './components/Canvas'
 import ColorPicker from './components/ColorPicker'
 import ColorSelected from './context/ColorSelected.context'
 
@@ -9,6 +10,7 @@ function App(): JSX.Element {
     <ColorSelected.Provider value={{ colorSelected, setColorSelected }}>
       <Title>Pixel Art</Title>
       <ColorPicker />
+      <Canvas width={8} />
     </ColorSelected.Provider>
   )
 }
