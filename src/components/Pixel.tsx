@@ -10,10 +10,13 @@ const Pixel = ({ width }: { width: number }): JSX.Element => {
 }
 export default Pixel
 
-const Pix = styled.div.attrs(({ background, selected }: { background: string; selected: string }) => ({
-  background,
-  selected,
-}))<{ width: number }>`
+const Pix = styled.div.attrs(
+  ({ background, selected, width }: { background: string; selected: string; width: number }) => ({
+    background,
+    selected,
+    width,
+  })
+)`
   border: 0.5px solid #000000;
   background-color: ${({ background }) => background};
   width: calc(${({ width }) => `550px / ${width}`});
