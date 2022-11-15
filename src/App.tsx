@@ -7,8 +7,8 @@ import ColorSelected from './context/ColorSelected.context'
 import SizeSelected from './context/SizeSelected.context'
 
 function App(): JSX.Element {
-  const [colorSelected, setColorSelected] = useState<undefined | string>('#ffffff')
-  const [size, setSize] = useState<number>(0)
+  const [colorSelected, setColorSelected] = useState<string>('#ffffff')
+  const [size, setSize] = useState<number>(8)
 
   const handleReset = () => {
     setColorSelected('#ffffff')
@@ -19,7 +19,7 @@ function App(): JSX.Element {
     <SizeSelected.Provider value={{ size, setSize }}>
       <ColorSelected.Provider value={{ colorSelected, setColorSelected }}>
         <Title>Pixel Art</Title>
-        {size === 0 && <SizeSelector />}
+        <SizeSelector />
         {size !== 0 && (
           <>
             <ColorPicker />

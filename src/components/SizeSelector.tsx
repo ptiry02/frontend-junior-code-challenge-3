@@ -1,48 +1,30 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import styled from 'styled-components'
 import SizeSelected from '../context/SizeSelected.context'
 
 const SizeSelector = (): JSX.Element => {
   const { setSize } = useContext(SizeSelected)
-  const [selected, setSelected] = useState<number>(8)
-
-  const handleChange = (element: number) => {
-    setSelected(element)
-  }
 
   return (
     <>
       <Wrapper>
         <Option>
-          <input
-            type='radio'
-            value={8}
-            name='size'
-            defaultChecked
-            onChange={e => handleChange(Number(e.target.value))}
-          />
+          <input type='radio' value={8} name='size' defaultChecked onChange={e => setSize(Number(e.target.value))} />
           8x8
         </Option>
         <Option>
-          <input type='radio' value={12} name='size' onChange={e => handleChange(Number(e.target.value))} />
+          <input type='radio' value={12} name='size' onChange={e => setSize(Number(e.target.value))} />
           12x12
         </Option>
         <Option>
-          <input type='radio' value={16} name='size' onChange={e => handleChange(Number(e.target.value))} />
+          <input type='radio' value={16} name='size' onChange={e => setSize(Number(e.target.value))} />
           16x16
         </Option>
         <Option>
-          <input type='radio' value={32} name='size' onChange={e => handleChange(Number(e.target.value))} />
+          <input type='radio' value={32} name='size' onChange={e => setSize(Number(e.target.value))} />
           32x32
         </Option>
       </Wrapper>
-      <Button
-        onClick={() => {
-          setSize(selected)
-        }}
-      >
-        Start
-      </Button>
     </>
   )
 }

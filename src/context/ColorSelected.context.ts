@@ -2,9 +2,9 @@
 import { createContext, Dispatch, SetStateAction } from 'react'
 
 type ColorSelectedContextState = {
-  colorSelected: undefined | string
-  setColorSelected: Dispatch<SetStateAction<undefined | string>>
+  colorSelected: string
+  setColorSelected: Dispatch<SetStateAction<string>>
 }
 
-const ColorSelected = createContext<ColorSelectedContextState>({ colorSelected: undefined, setColorSelected: () => {} })
+const ColorSelected = createContext<ColorSelectedContextState>({ colorSelected: '#ffffff', setColorSelected: () => {} })
 export default ColorSelected

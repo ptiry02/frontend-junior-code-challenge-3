@@ -1,14 +1,18 @@
 import styled from 'styled-components'
 import Pixel from './Pixel'
 
-const Row = ({ width }: { width: number }) => {
+const Row = ({ width, id }: { width: number; id: string }) => {
   const pixels: JSX.Element[] = []
 
   for (let i = 0; i < width; i++) {
-    pixels.push(<Pixel width={width} key={i} />)
+    pixels.push(<Pixel id={`${id}p${i}`} width={width} key={i} />)
   }
 
-  return <Wrapper width={width}>{pixels}</Wrapper>
+  return (
+    <Wrapper id={id} width={width}>
+      {pixels}
+    </Wrapper>
+  )
 }
 
 export default Row
