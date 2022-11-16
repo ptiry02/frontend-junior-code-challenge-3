@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/frontend-junior-code-challenge-3/static/js/main.e36bbf85.js",
+    "static/js/787.c4561376.chunk.js": "/frontend-junior-code-challenge-3/static/js/787.c4561376.chunk.js",
+    "index.html": "/frontend-junior-code-challenge-3/index.html",
+    "main.e36bbf85.js.map": "/frontend-junior-code-challenge-3/static/js/main.e36bbf85.js.map",
+    "787.c4561376.chunk.js.map": "/frontend-junior-code-challenge-3/static/js/787.c4561376.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.e36bbf85.js"
+  ]
+}
