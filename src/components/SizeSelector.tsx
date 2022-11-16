@@ -43,17 +43,3 @@ const Option = styled.label`
   align-items: center;
   column-gap: 5px;
 `
-const Button = styled.button`
-  align-self: center;
-  padding: 8px 10px;
-  font-size: 1em;
-  border: 1px solid black;
-  border-radius: 20px;
-  margin-top: 20px;
-  :hover {
-    cursor: pointer;
-  }
-  :active {
-    box-shadow: inset 0px 0px 3px 3px #cccccc;
-  }
-`

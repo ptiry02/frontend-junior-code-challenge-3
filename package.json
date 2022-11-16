@@ -34,7 +34,11 @@
       "react-app/jest",
       "plugin:@typescript-eslint/recommended"
     ],
-    "parser": "@typescript-eslint/parser"
+    "parser": "@typescript-eslint/parser",
+    "rules": {
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-non-null-assertion": "off"
+    }
   },
   "browserslist": {
     "production": [

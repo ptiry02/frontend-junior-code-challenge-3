@@ -1,6 +1,6 @@
-import { Dispatch, MutableRefObject, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, MutableRefObject, SetStateAction, useState } from 'react'
 import styled from 'styled-components'
-import * as htmlToImage from 'html-to-image'
+import { toPng, toJpeg, toSvg } from 'html-to-image'
 
 type DownloadModalProps = {
   isVisible: Dispatch<SetStateAction<boolean>>
@@ -12,9 +12,9 @@ const DownloadModal = ({ isVisible, canvas }: DownloadModalProps) => {
 
   const downloadImage = async () => {
     if (!canvas) return
-    const pngUrl = await htmlToImage.toPng(canvas.current)
-    const jpgUrl = await htmlToImage.toJpeg(canvas.current)
-    const svgUrl = await htmlToImage.toSvg(canvas.current)
+    const pngUrl = await toPng(canvas.current)
+    const jpgUrl = await toJpeg(canvas.current)
+    const svgUrl = await toSvg(canvas.current)
 
     // download image
     const link = document.createElement('a')
