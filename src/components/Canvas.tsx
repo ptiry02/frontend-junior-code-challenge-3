@@ -1,10 +1,14 @@
-import { useContext } from 'react'
+import { forwardRef, useContext } from 'react'
 import styled from 'styled-components'
 import ToolSelected, { ToolContextState } from '../context/Tool.context'
 import { CanvasSizes, Tools } from '../Types/enums'
 import Row from './Row'
 
-const Canvas = ({ width }: { width: CanvasSizes }) => {
+type CanvasProps = {
+  width: CanvasSizes
+}
+
+const Canvas = forwardRef<HTMLDivElement, CanvasProps>(({ width }, ref) => {
   const rows: JSX.Element[] = []
   const { tool } = useContext<ToolContextState>(ToolSelected)
 
@@ -13,11 +17,11 @@ const Canvas = ({ width }: { width: CanvasSizes }) => {
   }
 
   return (
-    <Wrapper id='canvas' cursor={tool}>
+    <Wrapper ref={ref} id='canvas' cursor={tool}>
       {rows}
     </Wrapper>
   )
-}
+})
 
 export default Canvas
 
@@ -28,7 +32,6 @@ const Wrapper = styled.div.attrs(({ cursor }: { cursor: Tools }) => ({
   width: 550px;
   height: 550px;
   border: 0.5px solid #000000;
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   :hover {

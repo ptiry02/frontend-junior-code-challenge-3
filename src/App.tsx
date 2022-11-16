@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import styled from 'styled-components'
 import Canvas from './components/Canvas'
 import ColorPicker from './components/ColorPicker'
@@ -7,11 +7,25 @@ import ColorSelected from './context/ColorSelected.context'
 import SizeSelected from './context/SizeSelected.context'
 import ToolSelected from './context/Tool.context'
 import { CanvasSizes, Colors, Tools } from './Types/enums'
+import * as htmlToImage from 'html-to-image'
 
 function App(): JSX.Element {
   const [colorSelected, setColorSelected] = useState<Colors>(Colors.White)
   const [size, setSize] = useState<CanvasSizes>(CanvasSizes.S)
   const [tool, setTool] = useState<Tools>(Tools.pencil)
+  const canvas = useRef<any>(null)
+
+  const downloadImage = async () => {
+    if (!canvas) return
+    const pngUrl = await htmlToImage.toPng(canvas.current)
+    const jpgUrl = await htmlToImage.toJpeg(canvas.current)
+
+    // download image
+    const link = document.createElement('a')
+    link.download = 'pixel-art.png'
+    link.href = jpgUrl
+    link.click()
+  }
 
   return (
     <ToolSelected.Provider value={{ tool, setTool }}>
@@ -28,7 +42,8 @@ function App(): JSX.Element {
               <Img src='bucket.cur' alt='bucket' />
             </Button>
           </ToolOptions>
-          <Canvas width={size} />
+          <Canvas ref={canvas} width={size} />
+          <Button onClick={downloadImage}>Download</Button>
         </ColorSelected.Provider>
       </SizeSelected.Provider>
     </ToolSelected.Provider>
@@ -45,6 +60,7 @@ const ToolOptions = styled.div`
   display: flex;
   align-self: center;
   column-gap: 30px;
+  margin-bottom: 20px;
 `
 const Img = styled.img`
   margin: 15px 0 0 15px;
