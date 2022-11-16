@@ -7,25 +7,15 @@ import ColorSelected from './context/ColorSelected.context'
 import SizeSelected from './context/SizeSelected.context'
 import ToolSelected from './context/Tool.context'
 import { CanvasSizes, Colors, Tools } from './Types/enums'
-import * as htmlToImage from 'html-to-image'
+import DownloadModal from './components/DownloadModal'
+import { createPortal } from 'react-dom'
 
 function App(): JSX.Element {
+  const [showModal, setShowModal] = useState<boolean>(false)
   const [colorSelected, setColorSelected] = useState<Colors>(Colors.White)
   const [size, setSize] = useState<CanvasSizes>(CanvasSizes.S)
   const [tool, setTool] = useState<Tools>(Tools.pencil)
   const canvas = useRef<any>(null)
-
-  const downloadImage = async () => {
-    if (!canvas) return
-    const pngUrl = await htmlToImage.toPng(canvas.current)
-    const jpgUrl = await htmlToImage.toJpeg(canvas.current)
-
-    // download image
-    const link = document.createElement('a')
-    link.download = 'pixel-art.png'
-    link.href = jpgUrl
-    link.click()
-  }
 
   return (
     <ToolSelected.Provider value={{ tool, setTool }}>
@@ -43,7 +33,9 @@ function App(): JSX.Element {
             </Button>
           </ToolOptions>
           <Canvas ref={canvas} width={size} />
-          <Button onClick={downloadImage}>Download</Button>
+          <Button onClick={() => setShowModal(true)}>Download</Button>
+          {showModal &&
+            createPortal(<DownloadModal canvas={canvas} isVisible={setShowModal} />, document.getElementById('modal')!)}
         </ColorSelected.Provider>
       </SizeSelected.Provider>
     </ToolSelected.Provider>
@@ -54,7 +46,7 @@ export default App
 
 const Title = styled.h1`
   align-self: center;
-  margin-bottom: 40px;
+  margin: 40px 0;
 `
 const ToolOptions = styled.div`
   display: flex;

@@ -6,8 +6,10 @@ const GlobalStyles = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
     }
-    body {
-        padding-top: 30px;
+    #modal {
+        width: 100vw;
+        display: flex;
+        justify-content: center;
     }
     #root {
         margin-bottom: 50px;

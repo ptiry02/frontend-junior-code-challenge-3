@@ -28,6 +28,7 @@ export default Canvas
 const Wrapper = styled.div.attrs(({ cursor }: { cursor: Tools }) => ({
   cursor,
 }))`
+  box-sizing: content-box;
   align-self: center;
   width: 550px;
   height: 550px;
