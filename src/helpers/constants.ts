@@ -1,13 +1,17 @@
-export const colors: string[] = [
-  '#F70700',
-  '#8C0A8B',
-  '#7EFE00',
-  '#031AFE',
-  '#FEFE00',
-  '#FCA406',
-  '#ffffff',
-  '#000000',
-  '#FDE5C4',
-  '#FCC1CB',
-  '#D3691C',
+import { CanvasSizes, Colors } from '../Types/enums'
+
+export const sizes: CanvasSizes[] = [CanvasSizes.S, CanvasSizes.M, CanvasSizes.L, CanvasSizes.XL]
+
+export const colors: Colors[] = [
+  Colors.Red,
+  Colors.Violet,
+  Colors.Green,
+  Colors.Blue,
+  Colors.Yellow,
+  Colors.Orange,
+  Colors.White,
+  Colors.Black,
+  Colors.Beige,
+  Colors.Pink,
+  Colors.Brown,
 ]

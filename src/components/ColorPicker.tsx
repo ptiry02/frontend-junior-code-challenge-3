@@ -3,13 +3,14 @@ import styled from 'styled-components'
 import ColorSelected from '../context/ColorSelected.context'
 import { colors } from '../helpers/constants'
 import { BsCheckLg } from 'react-icons/bs'
+import { Colors } from '../Types/enums'
 
 const ColorPicker = (): JSX.Element => {
   const { colorSelected, setColorSelected } = useContext(ColorSelected)
 
   return (
     <Wrapper>
-      {colors.map((c, i) => (
+      {colors.map((c: Colors, i) => (
         <Option key={i} style={{ backgroundColor: c }} onClick={() => setColorSelected(c)}>
           {colorSelected === c && (
             <Selected>

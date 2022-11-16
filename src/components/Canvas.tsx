@@ -1,17 +1,14 @@
-import { useRef } from 'react'
 import styled from 'styled-components'
 import Row from './Row'
 
 const Canvas = ({ width = 0 }: { width: number }) => {
-  //   const canvas = useRef<any>(undefined)
-
   const rows: JSX.Element[] = []
 
   for (let i = 0; i < width; i++) {
     rows.push(<Row id={`r${i}`} key={i} width={width} />)
   }
 
-  return <Wrapper /* ref={canvas} */>{rows}</Wrapper>
+  return <Wrapper>{rows}</Wrapper>
 }
 
 export default Canvas

@@ -5,28 +5,20 @@ import ColorPicker from './components/ColorPicker'
 import SizeSelector from './components/SizeSelector'
 import ColorSelected from './context/ColorSelected.context'
 import SizeSelected from './context/SizeSelected.context'
+import { CanvasSizes, Colors, Tools } from './Types/enums'
 
 function App(): JSX.Element {
-  const [colorSelected, setColorSelected] = useState<string>('#ffffff')
-  const [size, setSize] = useState<number>(8)
-
-  const handleReset = () => {
-    setColorSelected('#ffffff')
-    setSize(0)
-  }
+  const [colorSelected, setColorSelected] = useState<Colors>(Colors.White)
+  const [size, setSize] = useState<CanvasSizes>(CanvasSizes.S)
+  const [tool, setTool] = useState<Tools>(Tools.pencil)
 
   return (
     <SizeSelected.Provider value={{ size, setSize }}>
       <ColorSelected.Provider value={{ colorSelected, setColorSelected }}>
         <Title>Pixel Art</Title>
         <SizeSelector />
-        {size !== 0 && (
-          <>
-            <ColorPicker />
-            <Canvas width={size} />
-            <Button onClick={handleReset}>Reset</Button>
-          </>
-        )}
+        <ColorPicker />
+        <Canvas width={size} />
       </ColorSelected.Provider>
     </SizeSelected.Provider>
   )

@@ -1,29 +1,31 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import SizeSelected from '../context/SizeSelected.context'
+import { sizes } from '../helpers/constants'
+import { CanvasSizes } from '../Types/enums'
 
 const SizeSelector = (): JSX.Element => {
   const { setSize } = useContext(SizeSelected)
 
+  useEffect(() => {
+    document.getElementById('8')?.setAttribute('checked', 'true')
+  }, [])
+
   return (
     <>
       <Wrapper>
-        <Option>
-          <input type='radio' value={8} name='size' defaultChecked onChange={e => setSize(Number(e.target.value))} />
-          8x8
-        </Option>
-        <Option>
-          <input type='radio' value={12} name='size' onChange={e => setSize(Number(e.target.value))} />
-          12x12
-        </Option>
-        <Option>
-          <input type='radio' value={16} name='size' onChange={e => setSize(Number(e.target.value))} />
-          16x16
-        </Option>
-        <Option>
-          <input type='radio' value={32} name='size' onChange={e => setSize(Number(e.target.value))} />
-          32x32
-        </Option>
+        {sizes.map((size: CanvasSizes, i: number) => (
+          <Option key={i}>
+            <input
+              id={size.toString()}
+              type='radio'
+              value={size}
+              name='size'
+              onChange={e => setSize(Number(e.target.value))}
+            />
+            <span>{`${size}x${size}`}</span>
+          </Option>
+        ))}
       </Wrapper>
     </>
   )
