@@ -2,9 +2,9 @@
 import { createContext, Dispatch, SetStateAction } from 'react'
 import { Tools } from '../Types/enums'
 
-type ToolContextState = {
+export type ToolContextState = {
   tool: Tools
-  setTool: Dispatch<SetStateAction<string>>
+  setTool: Dispatch<SetStateAction<Tools>>
 }
 
 const ToolSelected = createContext<ToolContextState>({ tool: Tools.pencil, setTool: () => {} })

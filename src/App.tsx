@@ -5,6 +5,7 @@ import ColorPicker from './components/ColorPicker'
 import SizeSelector from './components/SizeSelector'
 import ColorSelected from './context/ColorSelected.context'
 import SizeSelected from './context/SizeSelected.context'
+import ToolSelected from './context/Tool.context'
 import { CanvasSizes, Colors, Tools } from './Types/enums'
 
 function App(): JSX.Element {
@@ -13,14 +14,24 @@ function App(): JSX.Element {
   const [tool, setTool] = useState<Tools>(Tools.pencil)
 
   return (
-    <SizeSelected.Provider value={{ size, setSize }}>
-      <ColorSelected.Provider value={{ colorSelected, setColorSelected }}>
-        <Title>Pixel Art</Title>
-        <SizeSelector />
-        <ColorPicker />
-        <Canvas width={size} />
-      </ColorSelected.Provider>
-    </SizeSelected.Provider>
+    <ToolSelected.Provider value={{ tool, setTool }}>
+      <SizeSelected.Provider value={{ size, setSize }}>
+        <ColorSelected.Provider value={{ colorSelected, setColorSelected }}>
+          <Title>Pixel Art</Title>
+          <SizeSelector />
+          {tool === 'pencil' && <ColorPicker />}
+          <ToolOptions>
+            <Button onClick={() => setTool(Tools.pencil)}>
+              <img src='pencil.cur' alt='pencil' />
+            </Button>
+            <Button onClick={() => setTool(Tools.bucket)}>
+              <Img src='bucket.cur' alt='bucket' />
+            </Button>
+          </ToolOptions>
+          <Canvas width={size} />
+        </ColorSelected.Provider>
+      </SizeSelected.Provider>
+    </ToolSelected.Provider>
   )
 }
 
@@ -30,14 +41,22 @@ const Title = styled.h1`
   align-self: center;
   margin-bottom: 40px;
 `
-const Button = styled.button<{ children: string }>`
+const ToolOptions = styled.div`
+  display: flex;
+  align-self: center;
+  column-gap: 30px;
+`
+const Img = styled.img`
+  margin: 15px 0 0 15px;
+  width: 35px;
+`
+const Button = styled.button`
   align-self: center;
   padding: 8px 10px;
   font-size: 1em;
   border: 1px solid black;
   border-radius: 20px;
   margin-top: 20px;
-  background-color: ${({ children }) => (children === 'Reset' ? '#ce0808' : 'inherit')};
   color: ${({ children }) => (children === 'Reset' ? '#ffffff' : 'inherit')};
   :hover {
     cursor: pointer;

@@ -1,19 +1,29 @@
+import { useContext } from 'react'
 import styled from 'styled-components'
+import ToolSelected, { ToolContextState } from '../context/Tool.context'
+import { CanvasSizes, Tools } from '../Types/enums'
 import Row from './Row'
 
-const Canvas = ({ width = 0 }: { width: number }) => {
+const Canvas = ({ width }: { width: CanvasSizes }) => {
   const rows: JSX.Element[] = []
+  const { tool } = useContext<ToolContextState>(ToolSelected)
 
   for (let i = 0; i < width; i++) {
-    rows.push(<Row id={`r${i}`} key={i} width={width} />)
+    rows.push(<Row id={`${i}`} key={i} width={width} />)
   }
 
-  return <Wrapper>{rows}</Wrapper>
+  return (
+    <Wrapper id='canvas' cursor={tool}>
+      {rows}
+    </Wrapper>
+  )
 }
 
 export default Canvas
 
-const Wrapper = styled.div`
+const Wrapper = styled.div.attrs(({ cursor }: { cursor: Tools }) => ({
+  cursor,
+}))`
   align-self: center;
   width: 550px;
   height: 550px;
@@ -22,6 +32,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   :hover {
-    cursor: url('pencil.cur'), auto;
+    cursor: url(${({ cursor }) => `${cursor}.cur`}), auto;
   }
 `

@@ -5,7 +5,7 @@ const Row = ({ width, id }: { width: number; id: string }) => {
   const pixels: JSX.Element[] = []
 
   for (let i = 0; i < width; i++) {
-    pixels.push(<Pixel id={`${id}p${i}`} width={width} key={i} />)
+    pixels.push(<Pixel id={`${id}.${i}`} width={width} key={i} />)
   }
 
   return (

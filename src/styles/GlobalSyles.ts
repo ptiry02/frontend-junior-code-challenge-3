@@ -10,6 +10,7 @@ const GlobalStyles = createGlobalStyle`
         padding-top: 30px;
     }
     #root {
+        margin-bottom: 50px;
         display: flex;
         flex-direction: column;
     }
